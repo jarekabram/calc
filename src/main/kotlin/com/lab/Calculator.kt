@@ -71,12 +71,14 @@ open class Calculator {
             if (isOperator(character)) {
                 if(temp.lastOrNull() in '0'..'9') {
                     stackDouble.push(temp.toDouble())
+                    temp = ""
                 }
                 result = doEquation(stackDouble, character)
             }
             else if (character == ' ') {
                 if(temp.lastOrNull() in '0'..'9') {
                     stackDouble.push(temp.toDouble())
+                    temp = ""
                 }
             }
             else {
