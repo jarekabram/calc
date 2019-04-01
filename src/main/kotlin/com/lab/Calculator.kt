@@ -97,35 +97,35 @@ open class Calculator {
                 temp = stack.peek()!!
                 stack.pop()
                 d = stack.peek()!!
-                temp -= d.minus(temp)
+                temp -= d - temp
                 stack.replaceTop(temp)
             }
             '+' -> {
                 temp = stack.peek()!!
                 stack.pop()
                 d = stack.peek()!!
-                temp = d.plus(temp)
+                temp = d + temp
                 stack.replaceTop(temp)
             }
             '*' -> {
                 temp = stack.peek()!!
                 stack.pop()
                 d = stack.peek()!!
-                temp = d.times(temp)
+                temp = d * temp
                 stack.replaceTop(temp)
             }
             '/' -> {
                 temp = stack.peek()!!
                 stack.pop()
                 d = stack.peek()!!
-                temp = d.div(temp)
+                temp = d / temp
                 stack.replaceTop(temp)
             }
             '%' -> {
                 temp = stack.peek()!!
                 stack.pop()
                 d = stack.peek()!!
-                temp = d.rem(temp)
+                temp = d%temp
                 stack.replaceTop(temp)
             }
             '^' -> {

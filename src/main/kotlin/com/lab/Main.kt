@@ -8,6 +8,7 @@ package com.lab
 
 fun main(args: Array<String>) {
     val htmlController = HTMLController()
+    htmlController.clickNumberOrOperator()
     htmlController.onClick()
 }
 
