@@ -32,11 +32,6 @@ open class Calculator {
                 if(lastCharacter.lastOrNull() in '0'..'9') {
                     output += " "
                 }
-                else if(lastCharacter == "+" || lastCharacter == "*" || lastCharacter == "/"
-                    || lastCharacter == "%" || lastCharacter == "^"|| lastCharacter == "v") {
-                    println(character)
-                    output += ""
-                }
                 if (operators.isEmpty() || priority(character) > priority(operators.peek())) {
                     operators.push(character)
                 }
@@ -50,7 +45,10 @@ open class Calculator {
             }
             else {
                 if((character in '0'..'9') &&
-                   (lastCharacter.lastOrNull() in '0'..'9' || lastCharacter == "")) {
+                   (lastCharacter.lastOrNull() in '0'..'9' || lastCharacter == "")
+                    || lastCharacter == "-" || lastCharacter == "+"
+                    || lastCharacter =="*" || lastCharacter =="/" || lastCharacter =="%"
+                    || lastCharacter == "^" || lastCharacter == "v") {
                     output += "$character"
                 }
                 else {
