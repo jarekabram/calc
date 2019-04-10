@@ -1,6 +1,7 @@
 package com.lab
 
 import kotlin.math.pow
+import kotlin.math.sqrt
 
 open class Calculator {
 
@@ -31,6 +32,11 @@ open class Calculator {
                 if(lastCharacter.lastOrNull() in '0'..'9') {
                     output += " "
                 }
+                else if(lastCharacter == "+" || lastCharacter == "*" || lastCharacter == "/"
+                    || lastCharacter == "%" || lastCharacter == "^"|| lastCharacter == "v") {
+                    println(character)
+                    output += ""
+                }
                 if (operators.isEmpty() || priority(character) > priority(operators.peek())) {
                     operators.push(character)
                 }
@@ -52,7 +58,7 @@ open class Calculator {
                 }
             }
 
-            lastCharacter += character
+            lastCharacter = character.toString()
         }
         while (!operators.isEmpty()) {
             output += "${operators.peek()} "
@@ -135,13 +141,18 @@ open class Calculator {
                 temp = d.pow(temp)
                 stack.replaceTop(temp)
             }
+            'v' -> {
+                temp = stack.peek()!!
+                temp = sqrt(temp)
+                stack.replaceTop(temp)
+            }
         }
         return temp
     }
 
     private fun priority(peek: Char?): Int {
         return when (peek) {
-            '^' -> 3
+            '^', 'v' -> 3
             '*', '/' -> 2
             '+', '-', ')' -> 1
             else -> 0
@@ -150,7 +161,7 @@ open class Calculator {
 
     private fun isOperator(character: Char): Boolean {
         return when (character) {
-            '-', '+', '*', '/', '%', '^' -> true
+            '-', '+', '*', '/', '%', '^', 'v' -> true
             else -> false
         }
     }

@@ -4,8 +4,6 @@ import org.w3c.dom.HTMLButtonElement
 import org.w3c.dom.HTMLInputElement
 import kotlin.browser.document
 import kotlin.browser.window
-import kotlin.dom.appendText
-import kotlin.dom.clear
 
 class HTMLController {
     private val insertTextLabel = document.getElementById("insert_text_label") as HTMLInputElement
@@ -24,6 +22,7 @@ class HTMLController {
     private val operatorDivButton = document.getElementById("operator_div_button") as HTMLButtonElement
     private val operatorModButton = document.getElementById("operator_mod_button") as HTMLButtonElement
     private val operatorPowButton = document.getElementById("operator_pow_button") as HTMLButtonElement
+    private val operatorSqrtButton = document.getElementById("operator_sqrt_button") as HTMLButtonElement
     private val operatorAddButton = document.getElementById("operator_add_button") as HTMLButtonElement
     private val operatorMultButton = document.getElementById("operator_mult_button") as HTMLButtonElement
     private val operatorClButton = document.getElementById("cl_button") as HTMLButtonElement
@@ -40,6 +39,7 @@ class HTMLController {
             if (isStringAnEquation(equation)) {
                 val calc = Calculator()
                 var str = calc.run(equation)
+                window.alert("Equation: $str")
                 val result = calc.calculate(str)
                 window.alert("Equation result: $result")
             }
@@ -57,7 +57,7 @@ class HTMLController {
         for (character in p_equation) {
             when (character) {
                 '0','1','2','3','4','5','6','7','8','9',
-                    '(',')','-','+','*','/','%','^' -> temp = true
+                    '(',')','-','+','*','/','%','^', 'v' -> temp = true
                 else -> return false
             }
         }
@@ -107,6 +107,9 @@ class HTMLController {
         })
         operatorPowButton.addEventListener("click", {
             insertTextLabel.value += "^"
+        })
+        operatorSqrtButton.addEventListener("click", {
+            insertTextLabel.value += "v"
         })
         operatorAddButton.addEventListener("click", {
             insertTextLabel.value += "+"
