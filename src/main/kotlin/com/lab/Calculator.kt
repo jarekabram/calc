@@ -1,5 +1,6 @@
 package com.lab
 
+import kotlin.browser.window
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -32,15 +33,22 @@ open class Calculator {
                 if(lastCharacter.lastOrNull() in '0'..'9') {
                     output += " "
                 }
-                if (operators.isEmpty() || priority(character) > priority(operators.peek())) {
-                    operators.push(character)
+                if((lastCharacter == "+"
+                    || lastCharacter =="*" || lastCharacter =="/" || lastCharacter =="%"
+                    || lastCharacter == "^" ) && character.toString() == "-" ) {
+
+                    output += "-"
                 }
                 else {
-                    while (priority(operators.peek()) >= priority(character)) {
-                        output += "${operators.peek()} "
-                        operators.pop()
+                    if (operators.isEmpty() || priority(character) > priority(operators.peek())) {
+                        operators.push(character)
+                    } else {
+                        while (priority(operators.peek()) >= priority(character)) {
+                            output += "${operators.peek()} "
+                            operators.pop()
+                        }
+                        operators.push(character)
                     }
-                    operators.push(character)
                 }
             }
             else {
@@ -59,7 +67,7 @@ open class Calculator {
             lastCharacter = character.toString()
         }
         while (!operators.isEmpty()) {
-            output += "${operators.peek()} "
+            output += " ${operators.peek()}"
             operators.pop()
         }
 
@@ -71,11 +79,19 @@ open class Calculator {
         var stackDouble: Stack<Double> = Stack()
         var result = 0.0
         var temp = ""
+        var it = 1
         for (character in input) {
             if (isOperator(character)) {
                 if(temp.lastOrNull() in '0'..'9') {
                     stackDouble.push(temp.toDouble())
                     temp = ""
+                }
+                if(character == '-' && input[it] != ' ') {
+                    temp += character
+                    if(it == input.length) {
+                        result = doEquation(stackDouble, character)
+                    }
+                    continue
                 }
                 result = doEquation(stackDouble, character)
             }
@@ -88,6 +104,7 @@ open class Calculator {
             else {
                 temp += character
             }
+            it += 1
         }
         return result
     }
@@ -96,48 +113,90 @@ open class Calculator {
         var temp = 0.0
         var d: Double
 
+        if(stack.isEmpty()) {
+            window.alert("Impossible operation")
+            throw Exception("There were no numbers provided, please type another equation")
+        }
         when (c) {
             '-' -> {
                 temp = stack.peek()!!
-                stack.pop()
-                d = stack.peek()!!
-                temp -= d - temp
-                stack.replaceTop(temp)
+                if(stack.size() >= 2) {
+                    stack.pop()
+                    d = stack.peek()!!
+                    temp = d - temp
+                    stack.replaceTop(temp)
+                }
+                else {
+                    window.alert("Impossible operation")
+                    throw Exception("Impossible operation")
+                }
             }
             '+' -> {
                 temp = stack.peek()!!
-                stack.pop()
-                d = stack.peek()!!
-                temp = d + temp
-                stack.replaceTop(temp)
+                if(stack.size() >= 2) {
+                    stack.pop()
+                    d = stack.peek()!!
+                    temp = d + temp
+                    stack.replaceTop(temp)
+                }
+                else {
+                    window.alert("Impossible operation")
+                    throw Exception("Impossible operation")
+                }
             }
             '*' -> {
                 temp = stack.peek()!!
-                stack.pop()
-                d = stack.peek()!!
-                temp = d * temp
-                stack.replaceTop(temp)
+                if(stack.size() >= 2) {
+                    stack.pop()
+                    d = stack.peek()!!
+                    temp = d * temp
+                    stack.replaceTop(temp)
+                }
+                else {
+                    window.alert("Impossible operation")
+                    throw Exception("Impossible operation")
+                }
+
             }
             '/' -> {
                 temp = stack.peek()!!
-                stack.pop()
-                d = stack.peek()!!
-                temp = d / temp
-                stack.replaceTop(temp)
+                if(stack.size() >= 2) {
+                    stack.pop()
+                    d = stack.peek()!!
+                    temp = d / temp
+                    stack.replaceTop(temp)
+                }
+                else {
+                    window.alert("Impossible operation")
+                    throw Exception("Impossible operation")
+                }
             }
             '%' -> {
                 temp = stack.peek()!!
-                stack.pop()
-                d = stack.peek()!!
-                temp = d%temp
-                stack.replaceTop(temp)
+                if(stack.size() >= 2) {
+                    stack.pop()
+                    d = stack.peek()!!
+                    temp = d%temp
+                    stack.replaceTop(temp)
+                }
+                else {
+                    window.alert("Impossible operation")
+                    throw Exception("Impossible operation")
+                }
             }
             '^' -> {
                 temp = stack.peek()!!
-                stack.pop()
-                d = stack.peek()!!
-                temp = d.pow(temp)
-                stack.replaceTop(temp)
+                if(stack.size() >= 2) {
+                    stack.pop()
+                    d = stack.peek()!!
+                    temp = d.pow(temp)
+                    stack.replaceTop(temp)
+                }
+                else {
+                    window.alert("Impossible operation")
+                    throw Exception("Impossible operation")
+                }
+
             }
             'v' -> {
                 temp = stack.peek()!!
