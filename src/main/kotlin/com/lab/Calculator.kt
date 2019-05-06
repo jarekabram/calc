@@ -6,21 +6,30 @@ import kotlin.math.sqrt
 
 open class Calculator {
 
+
     fun run(input: String): String {
 
         val operators: Stack<Char> = Stack()
         var output = ""
 
-        var lastCharacter = ""
+        var lastCharacter = ' '
+        var dotCount = 0
         for (character in input) {
+            if(character == '.') {
+                dotCount++
+                if(lastCharacter !in '0'..'9' || dotCount > 1) {
+                    window.alert("Cannot do equation on provided such string")
+                    throw Exception("Cannot introduce such string")
+                }
+            }
             if (character == '(') {
-                if(lastCharacter.lastOrNull() in '0'..'9') {
+                if(lastCharacter in '0'..'9') {
                     output += " "
                 }
                 operators.push(character)
             }
             else if (character == ')') {
-                if(lastCharacter.lastOrNull() in '0'..'9') {
+                if(lastCharacter in '0'..'9') {
                     output += " "
                 }
                 while (operators.peek() != '(') {
@@ -30,12 +39,12 @@ open class Calculator {
                 operators.pop()
             }
             else if (isOperator(character)) {
-                if(lastCharacter.lastOrNull() in '0'..'9') {
+                if(lastCharacter in '0'..'9') {
                     output += " "
                 }
-                if((lastCharacter == "+"
-                    || lastCharacter =="*" || lastCharacter =="/" || lastCharacter =="%"
-                    || lastCharacter == "^" ) && character.toString() == "-" ) {
+                if((lastCharacter == '+'
+                    || lastCharacter =='*' || lastCharacter == '/' || lastCharacter == '%'
+                    || lastCharacter == '^' ) && character == '-' ) {
 
                     output += "-"
                 }
@@ -52,11 +61,11 @@ open class Calculator {
                 }
             }
             else {
-                if((character in '0'..'9') &&
-                   (lastCharacter.lastOrNull() in '0'..'9' || lastCharacter == "")
-                    || lastCharacter == "-" || lastCharacter == "+"
-                    || lastCharacter =="*" || lastCharacter =="/" || lastCharacter =="%"
-                    || lastCharacter == "^" || lastCharacter == "v") {
+                if((character in '0'..'9' || character == '.') &&
+                   (lastCharacter in '0'..'9' || lastCharacter == ' ')
+                    || lastCharacter == '-' || lastCharacter == '+'
+                    || lastCharacter == '*' || lastCharacter == '/' || lastCharacter == '%'
+                    || lastCharacter == '^' || lastCharacter == 'v'|| lastCharacter == '(') {
                     output += "$character"
                 }
                 else {
@@ -64,7 +73,7 @@ open class Calculator {
                 }
             }
 
-            lastCharacter = character.toString()
+            lastCharacter = character
         }
         while (!operators.isEmpty()) {
             output += " ${operators.peek()}"
@@ -127,8 +136,7 @@ open class Calculator {
                     stack.replaceTop(temp)
                 }
                 else {
-                    window.alert("Impossible operation")
-                    throw Exception("Impossible operation")
+                    throwError()
                 }
             }
             '+' -> {
@@ -140,8 +148,7 @@ open class Calculator {
                     stack.replaceTop(temp)
                 }
                 else {
-                    window.alert("Impossible operation")
-                    throw Exception("Impossible operation")
+                    throwError()
                 }
             }
             '*' -> {
@@ -153,8 +160,7 @@ open class Calculator {
                     stack.replaceTop(temp)
                 }
                 else {
-                    window.alert("Impossible operation")
-                    throw Exception("Impossible operation")
+                    throwError()
                 }
 
             }
@@ -167,8 +173,7 @@ open class Calculator {
                     stack.replaceTop(temp)
                 }
                 else {
-                    window.alert("Impossible operation")
-                    throw Exception("Impossible operation")
+                    throwError()
                 }
             }
             '%' -> {
@@ -180,8 +185,7 @@ open class Calculator {
                     stack.replaceTop(temp)
                 }
                 else {
-                    window.alert("Impossible operation")
-                    throw Exception("Impossible operation")
+                    throwError()
                 }
             }
             '^' -> {
@@ -193,8 +197,7 @@ open class Calculator {
                     stack.replaceTop(temp)
                 }
                 else {
-                    window.alert("Impossible operation")
-                    throw Exception("Impossible operation")
+                    throwError()
                 }
 
             }
@@ -221,5 +224,9 @@ open class Calculator {
             '-', '+', '*', '/', '%', '^', 'v' -> true
             else -> false
         }
+    }
+    private fun throwError() {
+        window.alert("Impossible operation")
+        throw Exception("Impossible operation")
     }
 }

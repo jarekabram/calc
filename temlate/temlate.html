@@ -1,37 +1,175 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>undefined</title>
-    <meta name="generator" content="Google Web Designer 5.0.4.0226">
-    <style type="text/css" id="gwd-text-style">
-      p {
-        margin: 0;
-      }
-      h1 {
-        margin: 0;
-      }
-      h2 {
-        margin: 0;
-      }
-      h3 {
-        margin: 0;
-      }
-    </style>
-    <style type="text/css">
-      html, body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-      }
 
-      body {
-        background-color: transparent;
-        transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-        transform-style: preserve-3d;
-      }
-    </style>
-  </head>
-  <body>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Calculator</title>
+  <meta name="generator" content="Google Web Designer 5.0.4.0226">
+  <style type="text/css" id="gwd-text-style">
+    p {
+      margin: 0px;
+    }
+    h1 {
+      margin: 0px;
+    }
+    h2 {
+      margin: 0px;
+    }
+    h3 {
+      margin: 0px;
+    }
+  </style>
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+    body {
+      background-color: transparent;
+      transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+      transform-style: preserve-3d;
+    }
+    .gwd-button-gldx {
+      position: absolute;
+      width: 100px;
+      left: 296px;
+      height: 40px;
+      top: 254px;
+    }
+    .gwd-input-16mv {
+      position: absolute;
+      height: 20px;
+      width: 150px;
+      left: 55px;
+      top: 89px;
+    }
+    .gwd-label-x1e6 {
+      position: absolute;
+      height: 20px;
+      width: 150px;
+      left: 55px;
+      top: 54px;
+    }
+    .gwd-button-bedr {
+      position: absolute;
+      width: 100px;
+      height: 24px;
+      left: 55px;
+      top: 137px;
+    }
+    .gwd-button-1av6 {
+      top: 149px;
+      left: 55px;
+      width: 40px;
+      height: 40px;
+    }
+    .gwd-button-1gda {
+      left: 115px;
+      top: 149px;
+    }
+    .gwd-button-14kh {
+      top: 149px;
+      left: 175px;
+    }
+    .gwd-button-pdy0 {
+      left: 55px;
+      top: 203px;
+    }
+    .gwd-button-1t1e {
+      left: 175px;
+      top: 203px;
+    }
+    .gwd-button-lk99 {
+      left: 115px;
+      top: 203px;
+    }
+    .gwd-button-19px {
+      left: 236px;
+      top: 149px;
+    }
+    .gwd-button-1qgr {
+      left: 236px;
+      top: 254px;
+    }
+    .gwd-button-58fn {
+      left: 296px;
+      top: 149px;
+    }
+    .gwd-button-1ehh {
+      left: 236px;
+      top: 203px;
+    }
+    .gwd-button-1qrn {
+      left: 356px;
+      top: 203px;
+    }
+    .gwd-button-1lpj {
+      left: 296px;
+      top: 203px;
+    }
+    .gwd-button-ric0 {
+      left: 175px;
+      top: 203px;
+    }
+    .gwd-button-1qte {
+      top: 203px;
+    }
+    .gwd-button-xgrk {
+      top: 254px;
+      left: 55px;
+    }
+    .gwd-button-11wm {
+      top: 254px;
+    }
+    .gwd-button-52xd {
+      top: 254px;
+    }
+    .gwd-button-jmbp {
+      top: 306px;
+    }
+    .gwd-button-1kb6 {
+      top: 306px;
+      width: 100px;
+      left: 55px;
+    }
+    .gwd-button-tqej {
+      top: 306px;
+    }
+    .gwd-button-ugvt {
+      top: 149px;
+    }
+  </style>
+</head>
+
+<body class="htmlNoPages">
+  <button id="do_equation_button" class="gwd-button-gldx">Oblicz</button>
+  <input type="text" id="insert_text_label" class="gwd-input-16mv">
+  <label id="insert_equation_label" class="gwd-label-x1e6">Wprowadź równanie</label>
+  <!-- include kotlin runtime (run mvn package to get it there) -->
+  <script type="text/javascript" src="target/classes/lib/kotlin.js"></script>
+  <!-- your compiled script (run mvn compile to get it up to date) -->
+  <!-- see src/main/kotlin/com/lab/Hello.kt for implementation -->
+  <script type="text/javascript" src="target/classes/calc.js"></script>
+  <button id="number_1_button" class="gwd-button-bedr gwd-button-1av6">1</button>
+  <button id="number_3_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-14kh">3</button>
+  <button id="number_2_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda">2</button>
+  <button id="number_4_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-pdy0">4</button>
+  <button id="number_6_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-14kh gwd-button-1t1e gwd-button-ric0 gwd-button-1qte">6</button>
+  <button id="number_5_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-lk99">5</button>
+  <button id="number_7_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-pdy0 gwd-button-xgrk">7</button>
+  <button id="button_14" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-14kh gwd-button-1t1e gwd-button-ric0 gwd-button-1qte gwd-button-11wm">9</button>
+  <button id="number_8_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-lk99 gwd-button-52xd">8</button>
+  <button id="number_0_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-14kh gwd-button-1t1e gwd-button-ric0 gwd-button-1qte gwd-button-11wm gwd-button-jmbp">0</button>
+  <button id="ce_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-lk99 gwd-button-52xd gwd-button-1kb6">CE</button>
+  <button id="operator_div_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-19px">/</button>
+  <button id="operator_mod_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-14kh gwd-button-1qgr">%</button>
+  <button id="operator_pow_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-14kh gwd-button-1qgr gwd-button-tqej">^</button>
+  <button id="operator_add_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-58fn">+</button>
+  <button id="operator_mult_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-pdy0 gwd-button-1ehh">*</button>
+  <button id="cl_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-14kh gwd-button-1t1e gwd-button-1qrn">)</button>
+  <button id="op_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-14kh gwd-button-1t1e gwd-button-1qrn gwd-button-ugvt">(</button>
+  <button id="operator_subs_button" class="gwd-button-bedr gwd-button-1av6 gwd-button-1gda gwd-button-lk99 gwd-button-1lpj">-</button>
+</body>
+
 </html>

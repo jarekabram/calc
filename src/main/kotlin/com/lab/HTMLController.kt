@@ -39,7 +39,7 @@ class HTMLController {
             if (isStringAnEquation(equation)) {
                 val calc = Calculator()
                 var str = calc.run(equation)
-                window.alert("Equation: $str")
+//                window.alert("Equation: $str")
                 val result = calc.calculate(str)
                 window.alert("Equation result: $result")
             }
@@ -57,7 +57,7 @@ class HTMLController {
         for (character in p_equation) {
             when (character) {
                 '0','1','2','3','4','5','6','7','8','9',
-                    '(',')','-','+','*','/','%','^', 'v' -> temp = true
+                    '(',')','-','+','*','/','%','^', 'v', '.' -> temp = true
                 else -> return false
             }
         }
